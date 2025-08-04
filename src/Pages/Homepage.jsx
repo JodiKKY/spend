@@ -61,20 +61,30 @@ const Homepage = () => {
         </div>
       </section>
 {/* About Section - Features */}
-<section className="bg-gray-100 overflow-x-auto py-12 px-6">
-<div className="max-w-7xl mx-auto text-center mb-8 mt-8">
-  <h2 className="text-3xl font-bold text-gray-800">OUR SERVICES</h2>
-  <p className="text-gray-600 mt-2">
-    Smart financial tools to simplify your business and personal life
-  </p>
-</div>
+<section className="bg-gray-100 py-12 px-6">
+  <div className="max-w-7xl mx-auto text-center mb-8 mt-8">
+    <h2 className="text-3xl font-bold text-gray-800">OUR SERVICES</h2>
+    <p className="text-gray-600 mt-2">
+      Smart financial tools to simplify your business and personal life
+    </p>
+  </div>
 
-
-  <div className="flex flex-nowrap gap-[30px] w-max mx-auto">
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '30px',
+      justifyContent: 'center',
+      padding: '40px 20px',
+      textAlign: 'center',
+      margin: '0 auto',
+      maxWidth: '1200px',
+    }}
+  >
     {features.map((feature, index) => (
       <div
         key={index}
-        className="  transition duration-300 w-[300px] flex-shrink-0 text-center"
+        className="transition duration-300 w-[300px] flex-shrink-0 text-center"
       >
         <img
           src={feature.img}
@@ -87,6 +97,7 @@ const Homepage = () => {
     ))}
   </div>
 </section>
+
 
 <section className="py-24 px-6 bg-gray-50 font-[Segoe UI,sans-serif]">
   <div className="max-w-[1100px] mx-auto text-center">
