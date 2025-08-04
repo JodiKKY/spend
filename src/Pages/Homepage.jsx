@@ -77,8 +77,8 @@ const Homepage = () => {
       justifyContent: 'center',
       padding: '40px 20px',
       textAlign: 'center',
-      margin: '0 auto',
-      maxWidth: '1200px',
+      // margin: '0 auto',
+      // maxWidth: '1200px',
     }}
   >
     {features.map((feature, index) => (
