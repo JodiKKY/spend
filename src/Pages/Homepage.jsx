@@ -1,5 +1,7 @@
 import icon from '../assets/icon.png';
 import heroImage from '../assets/hero11.png';
+import hero from '../assets/hero.png';
+import React from 'react';
 import About1 from '../assets/About1.png';
 import About2 from '../assets/About2.png';
 import About3 from '../assets/About3.png';
@@ -46,15 +48,14 @@ const Homepage = () => {
         <div className="absolute inset-0 bg-black bg-opacity-10"></div>
 
         <div className="relative z-10 max-w-3xl text-center text-white">
-          <img src={icon} alt="Logo" className="h-20 w-20 mx-auto mb-4" />
+          <img src={hero} alt="Logo" className="h-20 w-20 mx-auto mb-4" />
           <p className="text-lg mb-6">
             Your Complete Financial Management Solution
           </p>
           <a
             href="/path/to/your/file.pdf"
             download
-            className="bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 transition duration-200"
-          >
+            className="bg-blue-500 text-white font-semibold text-sm px-[37px] py-[9px] rounded-full inline-block  hover:bg-blue-700 transition duration-200">
             Download Now
           </a>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
-import icon from '../assets/icon.png'; // Your logo
+import hero from '../assets/hero.png';
 
 const Footer = () => {
   return (
@@ -10,15 +10,10 @@ const Footer = () => {
 
         {/* Logo and Tagline */}
         <div className="text-center md:text-left">
-          <img src={icon} alt="Logo" className="h-16 w-16 mx-auto md:mx-0 mb-2" />
-          <h2 className="text-red-500 font-bold text-xl">YourBrand</h2>
+          <img src={hero} alt="Logo" className="h-16 w-16 mx-auto md:mx-0 mb-2" />
           <p className="mt-2">Your Complete Financial Management Solution</p>
-        </div>
 
-        {/* Contact Info */}
-        <div>
-          <h3 className="font-semibold text-lg mb-2">Contact</h3>
-          <p className="flex items-center gap-2">
+          <p className="flex items-center gap-2 mt-4">
             <FaMapMarkerAlt /> Accra
           </p>
           <p className="flex items-center gap-2 mt-2">
@@ -27,6 +22,32 @@ const Footer = () => {
           <p className="flex items-center gap-2 mt-2">
             <FaEnvelope /> toniSedjoah@gmail.com
           </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="font-semibold text-lg mb-2">Quick Links</h3>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <a href="/" className="hover:underline">Home</a>
+            </li>
+            <li>
+              <a
+                href="https://docs.google.com/document/d/17FfRRlNHP8bm26JurL40cIrpW7ncYVyPjAofSxvV0kk/edit?tab=t.0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="/terms" className="hover:underline">Terms of Use</a>
+            </li>
+            <li>
+              <a href="/cookies" className="hover:underline">Cookies Policy</a>
+            </li>
+          </ul>
         </div>
 
         {/* App Download & Socials */}
@@ -90,7 +111,21 @@ const Footer = () => {
         </div>
       </div>
 
-      <p className="text-center text-sm text-gray-400 mt-8">&copy; {new Date().getFullYear()} Spend All rights reserved.</p>
+      <div className="text-center text-sm text-gray-400 mt-8">
+  &copy; {new Date().getFullYear()} Spend. All rights reserved. <br />
+  <span className="text-gray-500">
+    Designed by{' '}
+    <a
+      href="https://osd-portfolio.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-white font-semibold hover:underline"
+    >
+      JodiKKY
+    </a>
+  </span>
+</div>
+
     </footer>
   );
 };
