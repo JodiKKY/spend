@@ -43,7 +43,7 @@ const Homepage = () => {
         <img
           src={heroImage}
           alt="Hero Background"
-          className="absolute inset-0 w-full h-full object-contain sm:object-cover"
+          className="absolute inset-0 w-full h-full object-cover sm:object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-10"></div>
 
