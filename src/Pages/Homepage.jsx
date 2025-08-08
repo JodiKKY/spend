@@ -1,4 +1,3 @@
-import icon from '../assets/icon.png';
 import heroImage from '../assets/hero11.png';
 import hero from '../assets/hero.png';
 import React from 'react';
@@ -38,28 +37,93 @@ const Homepage = () => {
   return (
     <div className="text-gray-800">
 
-      {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Hero Background"
-          className="absolute inset-0 w-full h-full object-cover sm:object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+{/* Hero Section */}
+<section className="relative w-full min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+  {/* Background image */}
+  <img
+    src={heroImage}
+    alt="Hero Background"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
 
-        <div className="relative z-10 max-w-3xl text-center text-white">
-          <img src={hero} alt="Logo" className="h-20 w-20 mx-auto mb-4" />
-          <p className="text-lg mb-6">
-            Your Complete Financial Management Solution
-          </p>
-          <a
-            href="/path/to/your/file.pdf"
-            download
-            className="bg-blue-500 text-white font-semibold text-sm px-[37px] py-[9px] rounded-full inline-block  hover:bg-blue-700 transition duration-200">
-            Download Now
-          </a>
-        </div>
-      </section>
+  {/* Gradient overlay for better text visibility */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+
+  {/* Hero content */}
+  <div className="relative z-10 max-w-3xl text-center text-white animate-fadeIn">
+    {/* App logo */}
+    <img
+      src={hero}
+      alt="Spend App Logo"
+      className="h-20 w-20 mx-auto mb-6 drop-shadow-lg"
+    />
+
+    {/* Headline */}
+    <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+      Manage Your Finances Smarter
+    </h1>
+
+    {/* Subheadline */}
+    <p className="text-lg md:text-xl mb-8 text-gray-200">
+      All-in-one financial management & invoicing solution.
+      Stay on top of your money — anytime, anywhere.
+    </p>
+
+    {/* Store badges */}
+    <div className="flex flex-wrap gap-4 justify-center mb-6">
+      {/* App Store */}
+      <a
+        href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Download on the App Store"
+      >
+        <img
+          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+          alt="Download on the App Store"
+          className="w-[150px] h-auto transition-transform hover:scale-105"
+        />
+      </a>
+
+      {/* Google Play Store */}
+      <a
+        href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Get it on Google Play"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt="Get it on Google Play"
+          className="w-[168px] h-auto transition-transform hover:scale-105"
+        />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style jsx>{`
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 1.2s ease-out forwards;
+  }
+`}</style>
+
+
+<style jsx>{`
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 1.2s ease-out forwards;
+  }
+`}</style>
+
+
 {/* About Section - Features */}
 <section className="bg-gray-100 py-12 px-6">
   <div className="max-w-7xl mx-auto text-center mb-8 mt-8">
