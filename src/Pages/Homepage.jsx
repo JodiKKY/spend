@@ -127,7 +127,7 @@ const Homepage = () => {
 {/* About Section - Features */}
 <section className="bg-gray-100 py-12 px-6">
   <div className="max-w-7xl mx-auto text-center mb-8 mt-8">
-    <h2 className="text-3xl font-bold text-gray-800">OUR SERVICES</h2>
+    <h2 className="text-3xl font-bold text-gray-800">OUR FEATURES</h2>
     <p className="text-gray-600 mt-2">
       Smart financial tools to simplify your business and personal life
     </p>
