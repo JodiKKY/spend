@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
-import hero from '../assets/hero.png';
+import hero from '../assets/logo_filled.png';
 
 const Footer = () => {
   return (

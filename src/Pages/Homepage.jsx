@@ -1,5 +1,5 @@
-import heroImage from '../assets/hero11.png';
-import hero from '../assets/hero.png';
+import heroImage from '../assets/hero_new.webp';
+import logo from '../assets/logo_filled.png';
 import React from 'react';
 import About1 from '../assets/About1.png';
 import About2 from '../assets/About2.png';
@@ -47,16 +47,18 @@ const Homepage = () => {
   />
 
   {/* Gradient overlay for better text visibility */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+
+  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40"></div>
+
 
   {/* Hero content */}
   <div className="relative z-10 max-w-3xl text-center text-white animate-fadeIn">
     {/* App logo */}
-    <img
-      src={hero}
+ {/*   <img
+      src={logo}
       alt="Spend App Logo"
       className="h-20 w-20 mx-auto mb-6 drop-shadow-lg"
-    />
+    />*/}
 
     {/* Headline */}
     <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
