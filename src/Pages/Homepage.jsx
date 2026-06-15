@@ -124,9 +124,8 @@ const Homepage = () => {
         </h1> <p className="hero__subheading"> All-in-one financial management &amp; invoicing — built for individuals and businesses who want clarity on every cedi. </p>
          <div className="hero__badges"> <a href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store" className="hero__badge-link" > 
          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="hero__badge-img" /> </a> <a href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play" className="hero__badge-link" >
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="hero__badge-img" /> </a> </div> <div className="hero__scroll-hint"> <div className="hero__scroll-mouse"> <div className="hero__scroll-dot" /> 
-          </div> 
-          </div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="hero__badge-img" /> </a> </div> 
+          
            </div> 
            </section>
 
