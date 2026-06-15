@@ -5,9 +5,8 @@ import About1 from '../assets/About1.png';
 import About2 from '../assets/About2.png';
 import About3 from '../assets/About3.png';
 import About4 from '../assets/About4.png';
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
-/* ─── Data ──────────────────────────────────────────────────── */
+/* Data */
 
 const features = [
   {
@@ -54,7 +53,7 @@ const testimonials = [
   },
 ];
 
-/* ─── Scroll-reveal hook ────────────────────────────────────── */
+/* Scroll-reveal hook */
 
 function useFadeIn(threshold = 0.12) {
   const ref = useRef(null);
@@ -81,7 +80,7 @@ function useFadeIn(threshold = 0.12) {
   return { ref, visible };
 }
 
-/* ─── Testimonial card ──────────────────────────────────────── */
+/* Testimonial card */
 
 const TestimonialCard = ({ quote, name, initial, index }) => {
   const { ref, visible } = useFadeIn();
@@ -106,87 +105,34 @@ const TestimonialCard = ({ quote, name, initial, index }) => {
   );
 };
 
-/* ─── Homepage ──────────────────────────────────────────────── */
+/* Homepage */
 
 const Homepage = () => {
   const { ref: featRef, visible: featVisible } = useFadeIn(0.1);
   const { ref: testRef, visible: testVisible } = useFadeIn(0.1);
 
-  // ✅ FIXED: scrollRef inside component
-  const scrollRef = useRef(null);
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -400 : 400,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <div className="homepage">
 
-          {/* ── Hero ───────────────────────────────────────────── */}
-      <section className="hero">
-        <img src={heroImage} alt="" aria-hidden="true" className="hero__bg" />
-        <div className="hero__overlay" />
- 
-        <div className="hero__content">
-          <img src={hero} alt="Spend" className="hero__logo" />
- 
-          <p className="hero__eyebrow">Finance &amp; Invoicing</p>
- 
-          <h1 className="hero__heading">
-            Manage Your<br />
-            <span className="hero__heading-accent">Finances Smarter</span>
-          </h1>
- 
-          <p className="hero__subheading">
-            All-in-one financial management &amp; invoicing — built for individuals
-            and businesses who want clarity on every cedi.
-          </p>
- 
-          <div className="hero__badges">
-            <a
-              href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download on the App Store"
-              className="hero__badge-link"
-            >
-              <img
-                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                alt="Download on the App Store"
-                className="hero__badge-img"
-              />
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Get it on Google Play"
-              className="hero__badge-link"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                alt="Get it on Google Play"
-                className="hero__badge-img"
-              />
-            </a>
+     {/* Hero */} <section className="hero"> 
+      <img src={heroImage} alt="" aria-hidden="true" className="hero__bg" /> 
+      <div className="hero__overlay" /> <div className="hero__content"> 
+        <img src={hero} alt="Spend" className="hero__logo" /> 
+        <p className="hero__eyebrow">Finance &amp; Invoicing</p> 
+        <h1 className="hero__heading"> Manage Your<br /> 
+        <span className="hero__heading-accent">Finances Smarter</span> 
+        </h1> <p className="hero__subheading"> All-in-one financial management &amp; invoicing — built for individuals and businesses who want clarity on every cedi. </p>
+         <div className="hero__badges"> <a href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store" className="hero__badge-link" > 
+         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="hero__badge-img" /> </a> <a href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play" className="hero__badge-link" >
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="hero__badge-img" /> </a> </div> <div className="hero__scroll-hint"> <div className="hero__scroll-mouse"> <div className="hero__scroll-dot" /> 
+          </div> 
           </div>
- 
-          <div className="hero__scroll-hint">
-            <div className="hero__scroll-mouse">
-              <div className="hero__scroll-dot" />
-            </div>
-          </div>
-        </div>
-      </section>
+           </div> 
+           </section>
 
-      {/* ── Features ─────────────────────────────────────────── */}
+      {/* Features */}
       <section className="features-section">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-10xl mx-auto">
 
           <div
             ref={featRef}
@@ -204,47 +150,25 @@ const Homepage = () => {
             </p>
           </div>
 
-          <div className="relative">
-
-            {/* Left Button */}
-            <button
-              onClick={() => scroll("left")}
-              className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:scale-110 transition"
-            >
-              <ChevronLeft size={22} />
-            </button>
-
-            {/* Scroll Container */}
-            <div
-              ref={scrollRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide py-4 px-2"
-            >
-              {features.map((feature, index) => (
-                <div key={index} className="feature-card flex-shrink-0">
-                  <img
-                    src={feature.img}
-                    alt={`Feature ${index + 1}`}
-                    className="feature-card__img"
-                  />
-                  <h3 className="feature-card__title">{feature.title}</h3>
-                  <p className="feature-card__desc">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Right Button */}
-            <button
-              onClick={() => scroll("right")}
-              className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:scale-110 transition"
-            >
-              <ChevronRight size={22} />
-            </button>
-
+          {/* GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
+            {features.map((feature, index) => (
+              <div key={index} className="feature-card">
+                <img
+                  src={feature.img}
+                  alt={`Feature ${index + 1}`}
+                  className="feature-card__img"
+                />
+                <h3 className="feature-card__title">{feature.title}</h3>
+                <p className="feature-card__desc">{feature.description}</p>
+              </div>
+            ))}
           </div>
+
         </div>
       </section>
 
-      {/* ── Testimonials ─────────────────────────────────────── */}
+      {/* Testimonials */}
       <section className="testimonials-section">
         <div className="max-w-5xl mx-auto">
 
@@ -281,5 +205,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
-

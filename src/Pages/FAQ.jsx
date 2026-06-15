@@ -59,7 +59,7 @@ const FAQ = () => {
       </section>
 
       <footer className="mt-8 text-sm text-gray-600">
-        Still have a question? Email <a href="mailto:support@spend.app" className="text-blue-600 underline">support@spend.app</a>
+        Still have a question? Email <a href="mailto:support@spend.app" className="text-blue-600 underline">toniSedjoah@gmail.com</a>
       </footer>
     </main>
   );
