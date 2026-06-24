@@ -1,12 +1,13 @@
-import heroImage from '../assets/hero11.png';
 import hero from '../assets/hero.png';
+
+import heroMockup from '../assets/image111.png';
 import React, { useEffect, useRef, useState } from 'react';
 import About1 from '../assets/About1.png';
 import About2 from '../assets/About2.png';
 import About3 from '../assets/About3.png';
 import About4 from '../assets/About4.png';
 
-/* Data */
+
 
 const features = [
   {
@@ -110,24 +111,90 @@ const TestimonialCard = ({ quote, name, initial, index }) => {
 const Homepage = () => {
   const { ref: featRef, visible: featVisible } = useFadeIn(0.1);
   const { ref: testRef, visible: testVisible } = useFadeIn(0.1);
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 80);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
-    <div className="homepage">
 
-     {/* Hero */} <section className="hero"> 
-      <img src={heroImage} alt="" aria-hidden="true" className="hero__bg" /> 
-      <div className="hero__overlay" /> <div className="hero__content"> 
-        <img src={hero} alt="Spend" className="hero__logo" /> 
-        <p className="hero__eyebrow">Finance &amp; Invoicing</p> 
-        <h1 className="hero__heading"> Manage Your<br /> 
-        <span className="hero__heading-accent">Finances Smarter</span> 
-        </h1> <p className="hero__subheading"> All-in-one financial management &amp; invoicing — built for individuals and businesses who want clarity on every cedi. </p>
-         <div className="hero__badges"> <a href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store" className="hero__badge-link" > 
-         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="hero__badge-img" /> </a> <a href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play" className="hero__badge-link" >
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="hero__badge-img" /> </a> </div> 
-          
-           </div> 
-           </section>
+    <div className="homepage">
+<section
+  className="hero relative overflow-hidden flex flex-col-reverse md:flex-row md:items-center"
+  style={{
+    background:
+      'radial-gradient(at 15% 20%, rgba(56, 189, 248, 0.35) 0px, transparent 50%), ' +
+      'radial-gradient(at 82% 0%, rgba(129, 140, 248, 0.35) 0px, transparent 50%), ' +
+      'radial-gradient(at 95% 75%, rgba(45, 212, 191, 0.28) 0px, transparent 50%), ' +
+      'radial-gradient(at 5% 95%, rgba(30, 64, 175, 0.55) 0px, transparent 50%), ' +
+      '#0a1834',
+  }}
+>
+
+  {/* Modern square mesh grid — sits between the gradient and the content */}
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute inset-0 z-0"
+    style={{
+      backgroundImage:
+        'linear-gradient(rgba(148,163,184,0.14) 1px, transparent 1px), ' +
+        'linear-gradient(90deg, rgba(148,163,184,0.14) 1px, transparent 1px)',
+      backgroundSize: '44px 44px',
+      WebkitMaskImage: 'radial-gradient(ellipse at 60% 40%, black 30%, transparent 75%)',
+      maskImage: 'radial-gradient(ellipse at 60% 40%, black 30%, transparent 75%)',
+    }}
+  />
+
+  <div className="relative z-10 w-full md:w-1/2 lg:w-[180%] flex items-center justify-center md:justify-start px-0 py-10 md:py-0">
+    <img
+      src={heroMockup}
+      alt="Spend app dashboards on mobile"
+      className="w-[90%] max-w-none object-contain"
+    />
+  </div>
+
+  <div className="hero__content relative z-10 w-full md:w-[68%] lg:w-[78%] px-6 md:px-0 md:pr-4 lg:pr-8 md:-translate-x-12 lg:-translate-x-20">
+    <p className="hero__eyebrow">Finance &amp; Invoicing</p>
+    <h1 className="hero__heading">
+      <span className="whitespace-nowrap">Manage Your</span><br />
+      <span className="hero__heading-accent whitespace-nowrap">Finances Smarter</span>
+    </h1>
+    <p className="hero__subheading">
+      All-in-one financial management &amp; invoicing — built for individuals and businesses who want clarity on every cedi.
+    </p>
+    <div className="hero__badges">
+
+       <a href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Download on the App Store"
+        className="hero__badge-link"
+      >
+        <img
+          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+          alt="Download on the App Store"
+          className="hero__badge-img"
+        />
+      </a>
+
+       <a href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Get it on Google Play"
+        className="hero__badge-link"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+          alt="Get it on Google Play"
+          className="hero__badge-img"
+        />
+      </a>
+    </div>
+  </div>
+
+</section>
 
       {/* Features */}
       <section className="features-section">

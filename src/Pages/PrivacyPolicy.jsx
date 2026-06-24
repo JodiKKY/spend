@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-/* ── Keyframes ─────────────────────────────────────────────── */
-
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -13,6 +11,11 @@ const STYLES = `
     from { transform: scaleX(0.6) scaleY(0.4); opacity: 0; }
     to   { transform: scaleX(1) scaleY(1); opacity: 1; }
   }
+  @keyframes ppIconPop {
+    0%   { transform: scale(0.5); opacity: 0; }
+    70%  { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -21,13 +24,11 @@ const STYLES = `
   }
 `;
 
-/* ── Data ───────────────────────────────────────────────────── */
+/* Data */
 
 const sections = [
   {
-    num: '01',
-    title: 'Information we collect',
-    type: 'list',
+    num: '01', title: 'Information we collect', type: 'list',
     items: [
       'Account information: when you create an account we may collect your name, email address, and any profile information you supply.',
       'Transaction & financial data: if you use invoicing or payment features, we may store invoices, amounts, dates and related metadata required to provide the service.',
@@ -35,9 +36,7 @@ const sections = [
     ],
   },
   {
-    num: '02',
-    title: 'How we use your information',
-    type: 'text',
+    num: '02', title: 'How we use your information', type: 'text',
     body: 'We use information to operate, maintain, and improve the service, to provide customer support, and to process transactions. We do not sell personal data to advertisers.',
   },
   {
@@ -114,12 +113,14 @@ const PolicyCard = ({ section, index }) => {
         borderRadius: 16,
         padding: '1.75rem',
         boxShadow: hovered
-          ? '0 4px 20px rgba(59,130,246,0.10)'
-          : '0 1px 4px rgba(0,0,0,0.04)',
+          ? '0 12px 28px rgba(37,99,235,0.12)'
+          : '0 1px 4px rgba(15,23,42,0.04)',
         transition: 'box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.55s ease, transform 0.55s ease',
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transitionDelay: `${index * 60}ms`,
+        transform: visible
+          ? hovered ? 'translateY(-2px)' : 'translateY(0)'
+          : 'translateY(24px)',
+        transitionDelay: visible ? '0ms' : `${index * 60}ms`,
       }}
     >
       {/* Number + title row */}
@@ -130,14 +131,15 @@ const PolicyCard = ({ section, index }) => {
             width: 36,
             height: 36,
             borderRadius: 10,
-            background: hovered ? '#3b82f6' : '#eff6ff',
+            background: hovered ? 'linear-gradient(135deg, #2563eb, #1d4ed8)' : '#eff6ff',
             color: hovered ? '#ffffff' : '#3b82f6',
             fontSize: '0.68rem',
             fontWeight: 700,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'background 0.25s ease, color 0.25s ease',
+            boxShadow: hovered ? '0 4px 14px rgba(37,99,235,0.35)' : 'none',
+            transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease',
             letterSpacing: '0.05em',
           }}
         >
@@ -194,6 +196,8 @@ const PolicyCard = ({ section, index }) => {
 /* ── Main page ──────────────────────────────────────────────── */
 
 const PrivacyPolicy = () => {
+  const [btnHovered, setBtnHovered] = useState(false);
+
   return (
     <>
       <style>{STYLES}</style>
@@ -201,7 +205,8 @@ const PrivacyPolicy = () => {
       <main
         style={{
           minHeight: '100vh',
-          background: '#f8f9fc',
+          background:
+            'radial-gradient(at 50% 0%, rgba(59,130,246,0.07), transparent 55%), #f8f9fc',
           fontFamily: "'Inter', system-ui, sans-serif",
           WebkitFontSmoothing: 'antialiased',
         }}
@@ -211,12 +216,35 @@ const PrivacyPolicy = () => {
         <header
           style={{
             position: 'relative',
-            background: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 60%, #60a5fa 100%)',
+            background:
+              'radial-gradient(at 18% 15%, rgba(96, 165, 250, 0.55) 0px, transparent 50%), ' +
+              'radial-gradient(at 82% 0%, rgba(129, 140, 248, 0.45) 0px, transparent 50%), ' +
+              'radial-gradient(at 92% 85%, rgba(45, 212, 191, 0.3) 0px, transparent 50%), ' +
+              'radial-gradient(at 8% 95%, rgba(29, 78, 216, 0.6) 0px, transparent 50%), ' +
+              '#10245c',
             padding: '7rem 1.5rem 6rem',
             textAlign: 'center',
             overflow: 'hidden',
           }}
         >
+          {/* Modern square mesh grid */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 1,
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px), ' +
+                'linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+              WebkitMaskImage:
+                'radial-gradient(ellipse at 50% 25%, black 35%, transparent 75%)',
+              maskImage:
+                'radial-gradient(ellipse at 50% 25%, black 35%, transparent 75%)',
+            }}
+          />
+
           <div
             style={{
               position: 'relative',
@@ -228,12 +256,17 @@ const PrivacyPolicy = () => {
           >
             <p
               style={{
+                display: 'inline-block',
                 fontSize: '0.7rem',
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.75)',
-                marginBottom: '1rem',
+                color: 'rgba(255,255,255,0.9)',
+                background: 'rgba(255,255,255,0.12)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                padding: '0.35rem 0.9rem',
+                borderRadius: 999,
+                marginBottom: '1.25rem',
               }}
             >
               Legal
@@ -248,18 +281,20 @@ const PrivacyPolicy = () => {
                 marginBottom: '1rem',
               }}
             >
-              Privacy Policy
+              Privacy<br />
+              <span style={{ color: '#bfe3ff' }}>Policy</span>
             </h1>
-            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.65 }}>
               Last updated: June 10, 2026
             </p>
           </div>
 
-          {/* Arc */}
+          {/* Decorative arc */}
           <div
             aria-hidden="true"
             style={{
               position: 'absolute',
+              zIndex: 2,
               bottom: -2,
               left: '-5%',
               width: '110%',
@@ -295,7 +330,7 @@ const PrivacyPolicy = () => {
           style={{
             maxWidth: '52rem',
             margin: '0 auto',
-            padding: '2rem 1.25rem 5rem',
+            padding: '2rem 1.25rem 3rem',
             display: 'flex',
             flexDirection: 'column',
             gap: '0.75rem',
@@ -304,6 +339,103 @@ const PrivacyPolicy = () => {
           {sections.map((s, i) => (
             <PolicyCard key={i} section={s} index={i} />
           ))}
+        </section>
+
+        {/* ── CTA card ───────────────────────────────────────── */}
+        <section style={{ padding: '2rem 1.25rem 3rem' }}>
+          <div
+            style={{
+              maxWidth: '30rem',
+              margin: '0 auto',
+              padding: 1.5,
+              borderRadius: 22,
+              background: 'linear-gradient(135deg, rgba(59,130,246,0.45), rgba(99,102,241,0.45))',
+            }}
+          >
+            <div
+              style={{
+                background: '#ffffff',
+                borderRadius: 20,
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+                boxShadow: '0 12px 32px rgba(15,23,42,0.08)',
+              }}
+            >
+              {/* Shield icon */}
+              <div
+                aria-hidden="true"
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 14,
+                  background: 'linear-gradient(135deg, #dbeafe, #eff6ff)',
+                  color: '#2563eb',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 1.25rem',
+                  boxShadow: '0 6px 16px rgba(59,130,246,0.2)',
+                  animation: 'ppIconPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.6s both',
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: 24, height: 24 }}
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.5rem' }}>
+                Questions about your data?
+              </h2>
+              <p style={{ fontSize: '0.875rem', color: '#6b7280', lineHeight: 1.65, marginBottom: '1.5rem' }}>
+                Reach out any time about your personal data and we'll get back to you.
+              </p>
+
+              <a
+                href="mailto:toniSedjoah@gmail.com"
+                onMouseEnter={() => setBtnHovered(true)}
+                onMouseLeave={() => setBtnHovered(false)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.85rem 2.25rem',
+                  borderRadius: 999,
+                  background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)',
+                  color: '#ffffff',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  boxShadow: btnHovered
+                    ? '0 10px 26px rgba(59,130,246,0.45)'
+                    : '0 4px 14px rgba(59,130,246,0.3)',
+                  transform: btnHovered ? 'translateY(-2px)' : 'translateY(0)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                }}
+              >
+                Email us
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: 16, height: 16 }}
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </section>
 
         {/* ── Footer note ────────────────────────────────────── */}

@@ -66,16 +66,18 @@ const FAQItem = ({ item, index }) => {
       onMouseLeave={() => setHovered(false)}
       style={{
         background: '#ffffff',
-        border: `1px solid ${hovered ? '#bfdbfe' : '#e9ecf0'}`,
-        borderRadius: 14,
+        border: `1px solid ${open ? '#bfdbfe' : hovered ? '#dbeafe' : '#e9ecf0'}`,
+        borderRadius: 16,
         overflow: 'hidden',
         boxShadow: hovered
-          ? '0 4px 20px rgba(59,130,246,0.1)'
-          : '0 1px 4px rgba(0,0,0,0.04)',
+          ? '0 12px 28px rgba(37,99,235,0.12)'
+          : '0 1px 4px rgba(15,23,42,0.04)',
         transition: 'box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.5s ease, transform 0.5s ease',
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        transitionDelay: `${index * 80}ms`,
+        transform: visible
+          ? hovered ? 'translateY(-2px)' : 'translateY(0)'
+          : 'translateY(20px)',
+        transitionDelay: visible ? '0ms' : `${index * 80}ms`,
       }}
     >
       <button
@@ -103,15 +105,18 @@ const FAQItem = ({ item, index }) => {
             flexShrink: 0,
             width: 32,
             height: 32,
-            borderRadius: 8,
-            background: open ? '#3b82f6' : '#eff6ff',
+            borderRadius: 9,
+            background: open
+              ? 'linear-gradient(135deg, #2563eb, #1d4ed8)'
+              : '#eff6ff',
             color: open ? '#ffffff' : '#3b82f6',
             fontSize: '0.7rem',
             fontWeight: 700,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'background 0.25s ease, color 0.25s ease',
+            boxShadow: open ? '0 4px 14px rgba(37,99,235,0.35)' : 'none',
+            transition: 'background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease',
           }}
         >
           0{index + 1}
@@ -219,7 +224,8 @@ const FAQ = () => {
       <main
         style={{
           minHeight: '100vh',
-          background: '#f8f9fc',
+          background:
+            'radial-gradient(at 50% 0%, rgba(59,130,246,0.07), transparent 55%), #f8f9fc',
           fontFamily: "'Inter', system-ui, sans-serif",
           WebkitFontSmoothing: 'antialiased',
         }}
@@ -229,12 +235,35 @@ const FAQ = () => {
         <header
           style={{
             position: 'relative',
-            background: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 60%, #60a5fa 100%)',
+            background:
+              'radial-gradient(at 18% 15%, rgba(96, 165, 250, 0.55) 0px, transparent 50%), ' +
+              'radial-gradient(at 82% 0%, rgba(129, 140, 248, 0.45) 0px, transparent 50%), ' +
+              'radial-gradient(at 92% 85%, rgba(45, 212, 191, 0.3) 0px, transparent 50%), ' +
+              'radial-gradient(at 8% 95%, rgba(29, 78, 216, 0.6) 0px, transparent 50%), ' +
+              '#10245c',
             padding: '7rem 1.5rem 6rem',
             textAlign: 'center',
             overflow: 'hidden',
           }}
         >
+          {/* Modern square mesh grid */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 1,
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px), ' +
+                'linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+              WebkitMaskImage:
+                'radial-gradient(ellipse at 50% 25%, black 35%, transparent 75%)',
+              maskImage:
+                'radial-gradient(ellipse at 50% 25%, black 35%, transparent 75%)',
+            }}
+          />
+
           <div
             style={{
               position: 'relative',
@@ -246,12 +275,17 @@ const FAQ = () => {
           >
             <p
               style={{
+                display: 'inline-block',
                 fontSize: '0.7rem',
                 fontWeight: 700,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.75)',
-                marginBottom: '1rem',
+                color: 'rgba(255,255,255,0.9)',
+                background: 'rgba(255,255,255,0.12)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                padding: '0.35rem 0.9rem',
+                borderRadius: 999,
+                marginBottom: '1.25rem',
               }}
             >
               Support
@@ -266,7 +300,8 @@ const FAQ = () => {
                 marginBottom: '1rem',
               }}
             >
-              Frequently asked<br />questions
+              Frequently asked<br />
+              <span style={{ color: '#bfe3ff' }}>questions</span>
             </h1>
             <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.65 }}>
               Everything you need to know about Spend. Can't find an answer?
@@ -278,6 +313,7 @@ const FAQ = () => {
             aria-hidden="true"
             style={{
               position: 'absolute',
+              zIndex: 2,
               bottom: -2,
               left: '-5%',
               width: '110%',
@@ -312,71 +348,93 @@ const FAQ = () => {
             style={{
               maxWidth: '30rem',
               margin: '0 auto',
-              background: '#ffffff',
-              border: '1px solid #e9ecf0',
-              borderRadius: 20,
-              padding: '2.5rem 2rem',
-              textAlign: 'center',
-              boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
+              padding: 1.5,
+              borderRadius: 22,
+              background: 'linear-gradient(135deg, rgba(59,130,246,0.45), rgba(99,102,241,0.45))',
             }}
           >
-            {/* Chat icon */}
             <div
-              aria-hidden="true"
               style={{
-                width: 48,
-                height: 48,
-                borderRadius: 14,
-                background: '#eff6ff',
-                color: '#3b82f6',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1.25rem',
-                animation: 'iconPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.6s both',
+                background: '#ffffff',
+                borderRadius: 20,
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+                boxShadow: '0 12px 32px rgba(15,23,42,0.08)',
               }}
             >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ width: 24, height: 24 }}
+              {/* Chat icon */}
+              <div
+                aria-hidden="true"
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 14,
+                  background: 'linear-gradient(135deg, #dbeafe, #eff6ff)',
+                  color: '#2563eb',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 1.25rem',
+                  boxShadow: '0 6px 16px rgba(59,130,246,0.2)',
+                  animation: 'iconPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.6s both',
+                }}
               >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-            </div>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: 24, height: 24 }}
+                >
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
 
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.5rem' }}>
-              Still have a question?
-            </h2>
-            <p style={{ fontSize: '0.875rem', color: '#6b7280', lineHeight: 1.65, marginBottom: '1.5rem' }}>
-              Our team is happy to help. Reach out and we'll get back to you.
-            </p>
-            <a
-              href="mailto:toniSedjoah@gmail.com"
-              onMouseEnter={() => setBtnHovered(true)}
-              onMouseLeave={() => setBtnHovered(false)}
-              style={{
-                display: 'inline-block',
-                padding: '0.75rem 2rem',
-                borderRadius: 10,
-                background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)',
-                color: '#ffffff',
-                fontSize: '0.875rem',
-                fontWeight: 600,
-                textDecoration: 'none',
-                boxShadow: btnHovered
-                  ? '0 8px 24px rgba(59,130,246,0.45)'
-                  : '0 4px 14px rgba(59,130,246,0.35)',
-                transform: btnHovered ? 'translateY(-2px)' : 'translateY(0)',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-              }}
-            >
-              Email us
-            </a>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827', marginBottom: '0.5rem' }}>
+                Still have a question?
+              </h2>
+              <p style={{ fontSize: '0.875rem', color: '#6b7280', lineHeight: 1.65, marginBottom: '1.5rem' }}>
+                Our team is happy to help. Reach out and we'll get back to you.
+              </p>
+              
+              <a
+                onMouseEnter={() => setBtnHovered(true)}
+                onMouseLeave={() => setBtnHovered(false)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.85rem 2.25rem',
+                  borderRadius: 999,
+                  background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)',
+                  color: '#ffffff',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  boxShadow: btnHovered
+                    ? '0 10px 26px rgba(59,130,246,0.45)'
+                    : '0 4px 14px rgba(59,130,246,0.3)',
+                  transform: btnHovered ? 'translateY(-2px)' : 'translateY(0)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                }}
+              >
+                Email us
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: 16, height: 16 }}
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </div>
           </div>
         </section>
 

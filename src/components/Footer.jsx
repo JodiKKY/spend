@@ -1,131 +1,181 @@
 import React from 'react';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
-import hero from '../assets/hero.png';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'FAQs', href: '/faqs' },
+];
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Use', href: '/terms' },
+  { label: 'Cookies Policy', href: '/cookies' },
+];
+
+const socials = [
+  { Icon: FaFacebookF, href: 'https://facebook.com', label: 'Facebook' },
+  { Icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
+  { Icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter' },
+];
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10 px-6">
-      {/* Main 3-column Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="relative bg-[#0a1834] text-white rounded-t-[3rem] overflow-hidden">
+  
 
-        {/* Logo and Tagline */}
-        <div className="text-center md:text-left">
-          <img src={hero} alt="Logo" className="h-16 w-16 mx-auto md:mx-0 mb-2" />
-          <p className="mt-2">Your Complete Financial Management Solution</p>
+      <div className="px-6 py-14 sm:py-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
-          <p className="flex items-center gap-2 mt-4">
-            <FaMapMarkerAlt /> Accra
-          </p>
-          <p className="flex items-center gap-2 mt-2">
-            <FaPhone className="rotate-90" /> +233 205 287 071
-          </p>
-          <p className="flex items-center gap-2 mt-2">
-            <FaEnvelope /> toniSedjoah@gmail.com
-          </p>
-        </div>
+          {/* Brand */}
+          <div>
+            <a href="/" className="inline-flex items-center gap-2 text-xl font-bold text-white mb-4">
+              Spend
+            </a>
 
-        {/* Quick Links */}
-        <div>
-          <h3 className="font-semibold text-lg mb-2">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a href="/" className="hover:underline">Home</a>
-            </li>
-            <li>
+            <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-xs">
+              Your complete financial management solution — invoicing and money
+              tracking, built for individuals and businesses.
+            </p>
+
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3 text-slate-300">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 text-blue-400 shrink-0">
+                  <FaMapMarkerAlt size={13} />
+                </span>
+                Accra, Ghana
+              </div>
               <a
-                href="https://docs.google.com/document/d/17FfRRlNHP8bm26JurL40cIrpW7ncYVyPjAofSxvV0kk/edit?tab=t.0"
+                href="tel:+233205287071"
+                className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors duration-200"
+              >
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 text-blue-400 shrink-0">
+                  <FaPhoneAlt size={12} />
+                </span>
+                +233 205 287 071
+              </a>
+              <a
+                href="mailto:toniSedjoah@gmail.com"
+                className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors duration-200"
+              >
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 text-blue-400 shrink-0">
+                  <FaEnvelope size={13} />
+                </span>
+                toniSedjoah@gmail.com
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-wide uppercase text-white mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-3 text-sm">
+              {quickLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="text-slate-300 hover:text-white transition-colors duration-200"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-wide uppercase text-white mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-3 text-sm">
+              {legalLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="text-slate-300 hover:text-white transition-colors duration-200"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Get the app + socials */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-wide uppercase text-white mb-4">
+              Get the App
+            </h3>
+            <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-xs">
+              Download Spend and take control of your finances anytime, anywhere.
+            </p>
+
+            <div className="flex flex-wrap gap-3 mb-6">
+              <a
+                href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline"
+                aria-label="Download on the App Store"
+                className="inline-block transition-transform duration-200 hover:-translate-y-0.5"
               >
-                Privacy Policy
+                <img
+                  src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                  alt="Download on the App Store"
+                  className="w-[140px] h-auto"
+                />
               </a>
-            </li>
-            <li>
-              <a href="/terms" className="hover:underline">Terms of Use</a>
-            </li>
-            <li>
-              <a href="/cookies" className="hover:underline">Cookies Policy</a>
-            </li>
-          </ul>
+
+              <a
+                href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Get it on Google Play"
+                className="inline-block transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play"
+                  className="w-[140px] h-auto"
+                />
+              </a>
+            </div>
+
+            <div className="flex gap-3">
+              {socials.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-slate-300 hover:bg-blue-600 hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
+          </div>
+
         </div>
 
-        {/* App Download & Socials */}
-        <div>
-          <h4 className="text-lg mb-4 font-semibold text-center md:text-left">Get the Spend App</h4>
-          <p className="text-gray-400 text-sm mb-6 max-w-md mx-auto md:mx-0 text-center md:text-left">
-            Download our app and take control of your finances anytime, anywhere.
+        {/* Bottom bar */}
+        <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 text-center sm:text-left">
+          <p>&copy; {new Date().getFullYear()} Spend. All rights reserved.</p>
+          <p>
+            Designed by{' '}
+            <a
+              href="https://osd-portfolio.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white font-semibold hover:text-blue-400 transition-colors duration-200"
+            >
+              JodiKKY
+            </a>
           </p>
-
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6 max-w-md mx-auto md:mx-0">
-            <a
-              href="https://apps.apple.com/gh/app/spend-finance-invoicing/id6448402636"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download on the App Store"
-            >
-              <img
-                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                alt="Download on the App Store"
-                className="w-[140px] h-auto"
-              />
-            </a>
-
-            <a
-              href="https://play.google.com/store/apps/details?id=com.tonysed.spend&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Get it on Google Play"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                alt="Get it on Google Play"
-                className="w-[140px] h-auto"
-              />
-            </a>
-          </div>
-
-          <div className="flex gap-5 justify-center md:justify-start max-w-md mx-auto md:mx-0">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/145/145802.png"
-                alt="Facebook"
-                className="w-7 h-7 transition-transform duration-200 hover:scale-110"
-              />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-                alt="Instagram"
-                className="w-7 h-7 transition-transform duration-200 hover:scale-110"
-              />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/145/145812.png"
-                alt="Twitter"
-                className="w-7 h-7 transition-transform duration-200 hover:scale-110"
-              />
-            </a>
-          </div>
         </div>
       </div>
-
-      <div className="text-center text-sm text-gray-400 mt-8">
-  &copy; {new Date().getFullYear()} Spend. All rights reserved. <br />
-  <span className="text-gray-500">
-    Designed by{' '}
-    <a
-      href="https://osd-portfolio.vercel.app/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-white font-semibold hover:underline"
-    >
-      JodiKKY
-    </a>
-  </span>
-</div>
-
     </footer>
   );
 };
