@@ -162,7 +162,8 @@ const Homepage = () => {
       <span className="hero__heading-accent whitespace-nowrap">Finances Smarter</span>
     </h1>
     <p className="hero__subheading">
-      All-in-one financial management &amp; invoicing — built for individuals and businesses who want clarity on every cedi.
+      All-in-one financial management &amp; invoicing<br/>
+       Built for individuals and businesses who want clarity on every cedi.
     </p>
     <div className="hero__badges">
 
@@ -234,32 +235,82 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="testimonials-section">
-        <div className="max-w-5xl mx-auto">
+       {/* Testimonials */}
+      <section
+        style={{
+          position: 'relative',
+          padding: '6rem 1.5rem',
+          overflow: 'hidden',
+          background:
+            'radial-gradient(at 15% 30%, rgba(56,189,248,0.18) 0px, transparent 50%), ' +
+            'radial-gradient(at 85% 70%, rgba(129,140,248,0.18) 0px, transparent 50%), ' +
+            '#0a1834',
+        }}
+      >
+        {/* Mesh grid overlay */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage:
+              'linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), ' +
+              'linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)',
+            backgroundSize: '44px 44px',
+            WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%)',
+            maskImage: 'radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%)',
+            pointerEvents: 'none',
+          }}
+        />
 
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '62rem', margin: '0 auto' }}>
+
+          {/* Header */}
           <div
             ref={testRef}
-            className="section-header"
             style={{
+              textAlign: 'center',
+              marginBottom: '3.5rem',
               opacity: testVisible ? 1 : 0,
               transform: testVisible ? 'translateY(0)' : 'translateY(20px)',
               transition: 'opacity 0.55s ease, transform 0.55s ease',
             }}
           >
-            <p className="section-eyebrow">Real users</p>
-            <h2 className="section-heading">What our users say</h2>
+            <p style={{
+              display: 'inline-block',
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.9)',
+              background: 'rgba(255,255,255,0.1)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              padding: '0.35rem 0.9rem',
+              borderRadius: 999,
+              marginBottom: '1.25rem',
+            }}>
+              Real users
+            </p>
+            <h2 style={{
+              fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
+              fontWeight: 800,
+              color: '#fff',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.15,
+              margin: 0,
+            }}>
+              What our users say
+            </h2>
           </div>
 
-          <div className="testimonials-grid">
+          {/* Cards */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.25rem',
+          }}>
             {testimonials.map(({ quote, name, initial }, i) => (
-              <TestimonialCard
-                key={i}
-                quote={quote}
-                name={name}
-                initial={initial}
-                index={i}
-              />
+              <TestimonialCard key={i} quote={quote} name={name} initial={initial} index={i} />
             ))}
           </div>
 

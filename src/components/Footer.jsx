@@ -4,10 +4,11 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaTwi
 const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'FAQs', href: '/faqs' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
 ];
 
 const legalLinks = [
-  { label: 'Privacy Policy', href: '/privacy-policy' },
+  
   { label: 'Terms of Use', href: '/terms' },
   { label: 'Cookies Policy', href: '/cookies' },
 ];
@@ -20,7 +21,7 @@ const socials = [
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#0a1834] text-white rounded-t-[3rem] overflow-hidden">
+    <footer className="relative bg-[#0a1834] text-white  overflow-hidden">
   
 
       <div className="px-6 py-14 sm:py-16">
@@ -33,7 +34,8 @@ const Footer = () => {
             </a>
 
             <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-xs">
-              Your complete financial management solution — invoicing and money
+              Your complete financial management solution <br/>
+              Invoicing and money
               tracking, built for individuals and businesses.
             </p>
 
